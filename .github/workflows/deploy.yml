@@ -26,8 +26,16 @@ jobs:
       uses: google-github-actions/setup-gcloud@v1
       with:
         version: 'latest'
-        service_account_key: ${{ secrets.GCP_SA_KEY }}  
+        service_account_key: ${{ secrets.GCP_SA_KEY }}  # Ensure this secret is set correctly with the service account JSON key.
         export_default_credentials: true
+
+    - name: Activate Service Account
+      run: |
+        echo "${{ secrets.GCP_SA_KEY }}" > /tmp/key.json  
+        gcloud auth activate-service-account --key-file=/tmp/key.json  
+        gcloud config set project YOUR_PROJECT_ID  
+      env:
+        CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
 
     - name: Deploy to Google App Engine
       run: |
