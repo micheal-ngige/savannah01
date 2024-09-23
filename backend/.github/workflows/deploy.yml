@@ -21,7 +21,11 @@ jobs:
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
-        pip install -r requirements.txt
+        if [ -f requirements.txt ]; then
+          pip install -r requirements.txt
+        else
+          echo "requirements.txt not found, skipping dependency installation"
+        fi
 
     - name: Set up Google Cloud SDK
       uses: google-github-actions/setup-gcloud@v1
