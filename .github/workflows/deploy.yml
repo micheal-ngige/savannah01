@@ -36,5 +36,5 @@ jobs:
 
     - name: Deploy to Google App Engine
       run: |
-          gcloud app deploy backend/app.yaml --quietsh
+          gcloud app deploy backend/app.yaml --quiet
 
