@@ -26,4 +26,4 @@ def perform_create(self, serializer):
 
 
 def home(request):
-    return HttpResponse("Welcome to the Home Page- Oauth2 works")
+    return HttpResponse("Welcome to the Home Page Oauth2 works")
